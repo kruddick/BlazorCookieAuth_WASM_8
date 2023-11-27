@@ -1,0 +1,26 @@
+﻿@page "/"
+
+<PageTitle>Home</PageTitle>
+
+<AuthorizeView>
+	<p>Authorized</p>
+</AuthorizeView>
+
+
+<div>
+	<button @onclick="Login">Login</button>
+</div>
+
+
+@code {
+
+	[Inject] CookieAuthenticationStateProvider? cookieAuthenticationStateProvider { get; set; }
+
+	public async Task Login()
+	{
+		if (cookieAuthenticationStateProvider != null)
+		{
+			await cookieAuthenticationStateProvider.Login();
+		}
+	}
+}
